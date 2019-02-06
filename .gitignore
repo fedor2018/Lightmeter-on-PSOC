@@ -1,0 +1,9 @@
+/psoc_light/*.fedor
+/psoc_light/psoc_light.cydsn/*.fedor
+/psoc_light/psoc_light.cydsn/codegentemp
+/psoc_light/psoc_light.cydsn/CortexM0
+/psoc_light/psoc_light.cydsn/*.log
+/psoc_light/psoc_light.cydsn/*.rpt
+/psoc_light/psoc_light.cydsn/Generated_Source
+/psoc_light/psoc_light.cydsn/Export
+/psoc_light/ComponentUpdateLog.txt
