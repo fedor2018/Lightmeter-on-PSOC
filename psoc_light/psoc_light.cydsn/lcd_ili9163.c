@@ -29,7 +29,7 @@ void lcd_SetAddr(uint8_t X1, uint8_t Y1, uint8_t X2, uint8_t Y2);
 
 
 
-/**
+//
  * \brief Resets display using external reset pint
  *
  * This functions toggles the reset pin to perform a hard reset
@@ -50,7 +50,7 @@ void lcd_Reset(void)
 	
 }
 
-/**
+//
  * \brief Write data to the display controller
  *
  * This functions sets the pin D/C# before writing to the controller. Different
@@ -76,7 +76,7 @@ void lcd_writeData(uint8_t data)
         SPI_Master_SpiUartClearRxBuffer();
 }
 
-/**
+//
  * \brief Write 16-bit data to the display controller
  *
  * This functions sets the pin D/C# before writing to the controller. Different
@@ -119,7 +119,7 @@ void lcd_writeData16(uint16_t data)
 }
 
 
- /**
+ //
  * \brief Writes a command to the display controller
  *
  * This functions pull pin D/C# low before writing to the controller. Different
@@ -147,7 +147,7 @@ void lcd_writeCommand(uint8_t command)
     
 }
 
-/**
+//
  * \brief Set area to write data to the display controller
  *
  * This functions sets the area in pixels to write data to
@@ -184,7 +184,7 @@ void lcd_drawPixel(uint16_t x, uint16_t y, uint16_t color)
 }
 
 
-/**
+//
  * \brief Set background color
  *
  * This function sets the background to defined color

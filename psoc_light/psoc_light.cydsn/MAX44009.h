@@ -9,18 +9,5 @@
  *
  * ========================================
 */
-#include "project.h"
-
-int main(void)
-{
-    CyGlobalIntEnable; /* Enable global interrupts. */
-
-    I2C_I2CInit();
-
-    for(;;)
-    {
-        /* Place your application code here. */
-    }
-}
 
 /* [] END OF FILE */
