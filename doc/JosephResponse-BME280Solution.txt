@@ -1,0 +1,97 @@
+Hello Joseph,
+
+We manage to use the C library of BME 280 and created our own functions that handles the I2C communication. It work without any problem. In this moment we do not have the resources to write a complete component solution but maybe our findings will help you too.
+
+First of all as you may probably know the BME 280 sensor structure needs to have attached the following functions:
+
+<code>
+
+bme280.bus_write   = I2C1_WriteBuffer;
+bme280.bus_read    = I2C1_ReadBuffer;
+bme280.dev_addr   = BME280_I2C_ADDRESS; // this is the address we used in our case is 77
+bme280.delay_msec      = (void *)CyDelay;
+
+</code>
+
+The functions for read and write are made by us respecting the BME library format. Here they are:
+
+<code>
+
+
+int8 I2C1_WriteBuffer(uint8 Addr, uint8 Reg, uint8 *pBuffer, uint8 Length)
+{
+    uint32 u32OK = I2C_I2C_MSTR_NO_ERROR;
+    int8 i8Result = 0;
+   
+    /* set pointer to indicate the desire register */
+    u32OK = I2C_I2CMasterWriteBuf(Addr,(uint8 *)&Reg, 1, I2C_I2C_MODE_NO_STOP);
+   
+    if(u32OK != I2C_I2C_MSTR_NO_ERROR)
+    {
+        i8Result = -1;
+    }
+   
+    while(0u == (I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT))
+    {
+        /* Wait until master complete write */
+    }
+   
+    u32OK = I2C_I2CMasterWriteBuf(Addr, pBuffer, Length, I2C_I2C_MODE_COMPLETE_XFER);
+   
+    if(u32OK != I2C_I2C_MSTR_NO_ERROR)
+    {
+        i8Result = -1;
+    }
+   
+    while(0u == (I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT))
+    {
+        /* Wait until master complete write */
+    }
+   
+    (void) I2C_I2CMasterClearStatus();
+   
+    return i8Result;
+}
+int8 I2C1_ReadBuffer(uint8 Addr, uint8 Reg, uint8 *pBuffer, uint8 Length)
+{
+    uint32 u32OK = I2C_I2C_MSTR_NO_ERROR;
+    int8 i8Result = 0;
+   
+    /* set pointer to indicate the desire register */
+    u32OK = I2C_I2CMasterWriteBuf(Addr,(uint8 *)&Reg, 1, I2C_I2C_MODE_NO_STOP);
+   
+    if(u32OK != I2C_I2C_MSTR_NO_ERROR)
+    {
+        i8Result = -1;
+    }
+   
+    while(0u == (I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT))
+    {
+        /* Wait until master complete write */
+    }
+   
+    /* Read the value from register */
+    u32OK = I2C_I2CMasterReadBuf(Addr , pBuffer, Length, I2C_I2C_MODE_REPEAT_START);
+   
+    if(u32OK != I2C_I2C_MSTR_NO_ERROR)
+    {
+        i8Result = -1;
+    }
+   
+    while(0u == (I2C_I2CMasterStatus() & I2C_I2C_MSTAT_RD_CMPLT))
+    {
+        /* Wait until master complete reading */
+    }
+   
+    (void) I2C_I2CMasterClearStatus();
+   
+    return i8Result;
+}
+
+</code>
+Please be aware that you may need to include CyTypes.h inside BME library or to adjust the types of variables in those functions. The idea behind the code is to use the Register parameter in an initial write call with NO STOP in order to move the BME internal pointer to a desired register. If you read BME datasheet you can easily understand the code.
+
+Best Regards!
+
+
+
