@@ -11,7 +11,7 @@
 */
 
 
-#include "lcd_ili9163.h"
+#include "lcd_ili9341.h"
 #include "project.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -19,15 +19,11 @@
 #define LCD_CMD                     0
 #define LCD_DATA                    1
 
-
-
-void lcd_Reset(void);
-void lcd_writeCommand(uint8_t data);
-void lcd_writeData(uint8_t data);
-void lcd_writeData16(uint16_t data);
-void lcd_SetAddr(uint8_t X1, uint8_t Y1, uint8_t X2, uint8_t Y2);
-
-
+//void lcd_Reset(void);
+//void lcd_writeCommand(uint8_t data);
+//void lcd_writeData(uint8_t data);
+//void lcd_writeData16(uint16_t data);
+//void lcd_SetAddr(uint16_t X1, uint16_t Y1, uint16_t X2, uint16_t Y2);
 
 /* \brief Resets display using external reset pint
  *
@@ -151,7 +147,7 @@ void lcd_writeCommand(uint8_t command)
  * \param X1 = Start Column, X2= End Column, Y1 = Start Row
  *  Y2 = End Row
  */
-void lcd_SetAddr(uint8_t X1, uint8_t Y1, uint8_t X2, uint8_t Y2)
+void lcd_SetAddr(uint16_t X1, uint16_t Y1, uint16_t X2, uint16_t Y2)
 {
 	lcd_writeCommand(LCD_SET_COL_ADDRESS);
 	lcd_writeData(0x00);
@@ -201,7 +197,7 @@ void lcd_setScreen(uint16_t Color)
 	}
 }
 
-void lcd_setArea(uint16_t Color, uint8_t sizeX, uint8_t sizeY, uint8_t startX, uint8_t startY)
+void lcd_setArea(uint16_t Color, uint16_t sizeX, uint16_t sizeY, uint16_t startX, uint16_t startY)
 {
 	volatile uint16_t XCnt, YCnt;
     
@@ -223,8 +219,119 @@ void lcd_setArea(uint16_t Color, uint8_t sizeX, uint8_t sizeY, uint8_t startX, u
 void lcd_init(void)
 {
 	lcd_Reset();
-	
-	//lcd_writeCommand(LCD_SOFT_RESET);
+
+    lcd_writeCommand(0xEF);
+    lcd_writeData(0x03);
+    lcd_writeData(0x80);
+    lcd_writeData(0x02);
+
+    lcd_writeCommand(0xCF);
+    lcd_writeData(0x00);
+    lcd_writeData(0XC1);
+    lcd_writeData(0X30);
+
+    lcd_writeCommand(0xED);
+    lcd_writeData(0x64);
+    lcd_writeData(0x03);
+    lcd_writeData(0X12);
+    lcd_writeData(0X81);
+
+    lcd_writeCommand(0xE8);
+    lcd_writeData(0x85);
+    lcd_writeData(0x00);
+    lcd_writeData(0x78);
+
+    lcd_writeCommand(0xCB);
+    lcd_writeData(0x39);
+    lcd_writeData(0x2C);
+    lcd_writeData(0x00);
+    lcd_writeData(0x34);
+    lcd_writeData(0x02);
+
+    lcd_writeCommand(0xF7);
+    lcd_writeData(0x20);
+
+    lcd_writeCommand(0xEA);
+    lcd_writeData(0x00);
+    lcd_writeData(0x00);
+
+    lcd_writeCommand(ILI9341_PWCTR1);    //Power control
+    lcd_writeData(0x23);   //VRH[5:0]
+
+    lcd_writeCommand(ILI9341_PWCTR2);    //Power control
+    lcd_writeData(0x10);   //SAP[2:0];BT[3:0]
+
+    lcd_writeCommand(ILI9341_VMCTR1);    //VCM control
+    lcd_writeData(0x3e);
+    lcd_writeData(0x28);
+
+    lcd_writeCommand(ILI9341_VMCTR2);    //VCM control2
+    lcd_writeData(0x86);  //--
+
+    lcd_writeCommand(ILI9341_MADCTL);    // Memory Access Control
+    lcd_writeData(0x48);
+
+    lcd_writeCommand(ILI9341_VSCRSADD); // Vertical scroll
+    lcd_writeData16(0);                 // Zero
+
+    lcd_writeCommand(ILI9341_PIXFMT);
+    lcd_writeData(0x55);
+
+    lcd_writeCommand(ILI9341_FRMCTR1);
+    lcd_writeData(0x00);
+    lcd_writeData(0x18);
+
+    lcd_writeCommand(ILI9341_DFUNCTR);    // Display Function Control
+    lcd_writeData(0x08);
+    lcd_writeData(0x82);
+    lcd_writeData(0x27);
+
+    lcd_writeCommand(0xF2);    // 3Gamma Function Disable
+    lcd_writeData(0x00);
+
+    lcd_writeCommand(ILI9341_GAMMASET);    //Gamma curve selected
+    lcd_writeData(0x01);
+
+    lcd_writeCommand(ILI9341_GMCTRP1);    //Set Gamma
+    lcd_writeData(0x0F);
+    lcd_writeData(0x31);
+    lcd_writeData(0x2B);
+    lcd_writeData(0x0C);
+    lcd_writeData(0x0E);
+    lcd_writeData(0x08);
+    lcd_writeData(0x4E);
+    lcd_writeData(0xF1);
+    lcd_writeData(0x37);
+    lcd_writeData(0x07);
+    lcd_writeData(0x10);
+    lcd_writeData(0x03);
+    lcd_writeData(0x0E);
+    lcd_writeData(0x09);
+    lcd_writeData(0x00);
+
+    lcd_writeCommand(ILI9341_GMCTRN1);    //Set Gamma
+    lcd_writeData(0x00);
+    lcd_writeData(0x0E);
+    lcd_writeData(0x14);
+    lcd_writeData(0x03);
+    lcd_writeData(0x11);
+    lcd_writeData(0x07);
+    lcd_writeData(0x31);
+    lcd_writeData(0xC1);
+    lcd_writeData(0x48);
+    lcd_writeData(0x08);
+    lcd_writeData(0x0F);
+    lcd_writeData(0x0C);
+    lcd_writeData(0x31);
+    lcd_writeData(0x36);
+    lcd_writeData(0x0F);
+
+    lcd_writeCommand(ILI9341_SLPOUT);    //Exit Sleep
+    CyDelay(120);
+    lcd_writeCommand(ILI9341_DISPON);    //Display on
+    CyDelay(120);
+//========================
+/*	//lcd_writeCommand(LCD_SOFT_RESET);
 	lcd_writeCommand(LCD_EXIT_SLEEP_MODE);
 	CyDelay(100);
 	
@@ -257,7 +364,7 @@ void lcd_init(void)
 	
 	lcd_writeCommand(LCD_EXIT_IDLE_MODE);
 	
-    /* 16 bits per pixel R5 G6 B5 */
+    // 16 bits per pixel R5 G6 B5 
 	lcd_writeCommand(LCD_SET_PIXEL_FMT);
 	lcd_writeData(0x05); 
 	
@@ -290,7 +397,7 @@ void lcd_init(void)
 	lcd_writeCommand(LCD_EXIT_INVERT_MODE);
 	
 	lcd_writeCommand(LCD_WRITE_MEM_START);
-	
+*/	
 }
 
 

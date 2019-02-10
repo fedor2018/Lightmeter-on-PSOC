@@ -27,6 +27,11 @@
 */
 
 //#include <Wire.h>
+#define VEML6070_ADDR_A (0x18>>1)
+#define VEML6070_ADDR_C 0x38 //(0x70>>1)
+#define VEML6070_ADDR_L 0x38 //(0x71>>1) //0x38
+#define VEML6070_ADDR_H 0x39 //(0x73>>1) //0x39
+#define VEML6070_T	0x4|0x2	//1T 125ms
 
 #define I2C_ADDR 0x38 //0x38 and 0x39
 /*

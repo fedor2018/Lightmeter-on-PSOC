@@ -7,3 +7,11 @@
 /psoc_light/psoc_light.cydsn/Generated_Source
 /psoc_light/psoc_light.cydsn/Export
 /psoc_light/ComponentUpdateLog.txt
+/psoc_light/*.su04759
+/psoc_light/TFT240x320.cydsn/codegentemp
+/psoc_light/TFT240x320.cydsn/*.log
+/psoc_light/TFT240x320.cydsn/*.fedor
+/psoc_light/TFT240x320.cydsn/TFT240x320_timing.html
+/psoc_light/TFT240x320.cydsn/*.rpt
+/psoc_light/psoc_light.cydsn/psoc_light_timing.html
+/psoc_light/psoc_light.cydsn/*.su04759
