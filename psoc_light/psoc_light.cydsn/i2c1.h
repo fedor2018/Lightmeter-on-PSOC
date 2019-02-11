@@ -9,8 +9,10 @@
  *
  * ========================================
 */
+#include "project.h"
 
-void VEML6070_init();
-float VEML6070_uv(void);
+int8 I2C_ReadBuffer(uint8 Addr, uint8 Reg, uint8 *pBuffer, uint8 Length);
+int8 I2C_WriteBuffer(uint8 Addr, uint8 Reg, uint8 *pBuffer, uint8 Length);
+int8 I2C_WriteReg(uint8 Addr, uint8 Reg);
 
 /* [] END OF FILE */
