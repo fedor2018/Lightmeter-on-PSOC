@@ -28,9 +28,6 @@
     Rset=600k -> 1T=250.0ms ->  12.500 uW/cm²/step
 */
 
-//#include <Wire.h>
-#define VEML6070_ADDR_A (0x18>>1)
-#define VEML6070_ADDR_C 0x38 //(0x70>>1)
 #define VEML6070_ADDR_L 0x38 //(0x71>>1) //0x38
 #define VEML6070_ADDR_H 0x39 //(0x73>>1) //0x39
 #define VEML6070_T	0x4|0x2	//1T 125ms
@@ -49,40 +46,39 @@ void VEML6070_init(){
 
 float VEML6070_uv(void){
     uint8 data;
-    I2C_ReadBuffer(VEML6070_ADDR_H, 0, &data, 1);
+    I2C_ReadBuffer(VEML6070_ADDR_H, 0x73, &data, 1);
     uint16 uv = (data<<8);
-    I2C_ReadBuffer(VEML6070_ADDR_L, 0, &data, 1);
+    I2C_ReadBuffer(VEML6070_ADDR_L, 0x71, &data, 1);
     uv|= data;
     return (float)uv;
 }
 
-/*
-void setup()
-{
-  Wire.beginTransmission(I2C_ADDR);
-  Wire.write((IT_1<<2) | 0x02);
-  Wire.endTransmission();
+float VEML6070_uvi(void){
+/*    uint16_t uva;
+    uint16_t uvb;
+    uint16_t uvComp1;
+    uint16_t uvComp2;
+
+    //if ((_lastReadTime + _integrationTime) > millis())
+    //{
+//        return _lastIndex;
+ //   }
+
+    float uvaCalc = this->uva();
+    float uvbCalc = this->uvb();
+
+    float uvia = uvaCalc * (1.0 / UV_ALPHA) * _aResponsivity;
+    float uvib = uvbCalc * (1.0 / UV_BETA) * _bResponsivity;
+    _lastIndex = (uvia + uvib) / 2.0;
+    if (_hdEnabled)
+    {
+        _lastIndex *= HD_SCALAR;
+    }
+    
+    _lastReadTime = millis();
+    return _lastIndex;*/
+    return 0.0;
 }
 
-void loop()
-{
-  byte msb=0, lsb=0;
-  uint16_t uv;
 
-  Wire.requestFrom(I2C_ADDR+1, 1); //MSB
-  delay(1);
-  if(Wire.available())
-    msb = Wire.read();
-
-  Wire.requestFrom(I2C_ADDR+0, 1); //LSB
-  delay(1);
-  if(Wire.available())
-    lsb = Wire.read();
-
-  uv = (msb<<8) | lsb;
-  Serial.println(uv, DEC); //output in steps (16bit)
-
-  delay(1000);
-}
-*/
 /* [] END OF FILE */

@@ -1,6 +1,7 @@
 *.fedor
 codegentemp
 CortexM0
+ARM_GCC_541
 *.log
 *.rpt
 Generated_Source

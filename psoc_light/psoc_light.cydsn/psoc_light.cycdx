@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="Bat" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Pin_Bat" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="GND_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="D_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Q_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_MISO" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Bootloadable" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="IDAC" BASE="0x0" SIZE="0x0" desc="IDAC" visible="true" hidden="false">
+    <block name="cy_psoc4_idac" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="CSD_IDAC_POLARITY" address="0x40080004" bitWidth="32" desc=" CSD IDAC Polarity" hidden="false" />
+    <register name="CSD_IDAC" address="0x40080008" bitWidth="32" desc=" CSD IDAC register" hidden="false" />
+    <register name="CSD_TRIM1" address="0x4008FF00" bitWidth="32" desc=" CSD IDAC TRIM1" hidden="false" />
+    <register name="CSD_TRIM2" address="0x4008FF04" bitWidth="32" desc=" CSD IDAC TRIM2" hidden="false" />
+  </block>
+  <block name="Pin_POWER_ON" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="UART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="tx" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  </block>
+  <block name="Bat" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_Bat" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Comp" BASE="0x0" SIZE="0x0" desc="Comparator" visible="true" hidden="false">
     <block name="cy_psoc4_abuf" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -66,20 +82,27 @@
     <register name="OA_SLOPE_OFFSET_TRIM" address="0x40100F10" bitWidth="32" desc="Comparator slope offset drift trim" hidden="false" />
     <register name="OA_COMP_TRIM" address="0x40100F14" bitWidth="32" desc="Comparator trim" hidden="false" />
   </block>
-  <block name="GND_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SW_Right" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="UART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
-    <block name="tx" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_MOSI" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Timer_ADC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VMux_count" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_reload" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_start" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_stop" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_capture" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_m0s8_tcpwm_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="COUNTER" address="0x40050148" bitWidth="32" desc="Current counter value" hidden="false" />
+    <register name="CC" address="0x4005014C" bitWidth="32" desc="Compare / capture value" hidden="false" />
+    <register name="CC_BUF" address="0x40050150" bitWidth="32" desc="Compare / capture buffer value" hidden="false" />
+    <register name="PERIOD" address="0x40050154" bitWidth="32" desc="Period value" hidden="false" />
+    <register name="PERIOD_BUF" address="0x40050158" bitWidth="32" desc="Period buffer value" hidden="false" />
   </block>
-  <block name="IDAC" BASE="0x0" SIZE="0x0" desc="IDAC" visible="true" hidden="false">
-    <block name="cy_psoc4_idac" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="CSD_IDAC_POLARITY" address="0x40080004" bitWidth="32" desc=" CSD IDAC Polarity" hidden="false" />
-    <register name="CSD_IDAC" address="0x40080008" bitWidth="32" desc=" CSD IDAC register" hidden="false" />
-    <register name="CSD_TRIM1" address="0x4008FF00" bitWidth="32" desc=" CSD IDAC TRIM1" hidden="false" />
-    <register name="CSD_TRIM2" address="0x4008FF04" bitWidth="32" desc=" CSD IDAC TRIM2" hidden="false" />
-  </block>
-  <block name="Pin_POWER_ON" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="isr_ADC" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="ILI9341" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SPIM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="TxInternalInterrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -91,22 +114,31 @@
     <block name="RxInternalInterrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   </block>
   <block name="Pin_SS" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_lfclk" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_SCK" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="PWR_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="R_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Bootloadable" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Pin_MOSI" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Pin_MISO" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Pin_Right" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="isr_KEY" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="POFF" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
+    <block name="VMux_count" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_reload" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_start" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_stop" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_capture" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="VMux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <block name="cy_m0s8_tcpwm_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="COUNTER" address="0x40050108" bitWidth="32" desc="Current counter value" hidden="false" />
+    <register name="CC" address="0x4005010C" bitWidth="32" desc="Compare / capture value" hidden="false" />
+    <register name="CC_BUF" address="0x40050110" bitWidth="32" desc="Compare / capture buffer value" hidden="false" />
+    <register name="PERIOD" address="0x40050114" bitWidth="32" desc="Period value" hidden="false" />
+    <register name="PERIOD_BUF" address="0x40050118" bitWidth="32" desc="Period buffer value" hidden="false" />
+  </block>
+  <block name="or_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="PWR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="LCD_Reset" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="PWR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="D_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_Aout" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="GND_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="D_C" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_Apos" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Opamp" BASE="0x0" SIZE="0x0" desc="OpAmp" visible="true" hidden="false">
     <block name="cy_analog_noconnect_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="cy_analog_virtualmux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -534,9 +566,20 @@
       <field name="WOUND_RESOLUTION" from="1" to="0" access="R" resetVal="" desc="Maximum SAR resolution allowed" hidden="false" />
     </register>
   </block>
-  <block name="Pin_Apos" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="cy_constant_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="SFH229" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_Ainv" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="D_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_Right" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SW_Left" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Pin_Left" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="isr_Vbat" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SW_Right" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="R_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="C_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Debouncer" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="I2C" BASE="0x0" SIZE="0x0" desc="Serial Communication Block" visible="true" hidden="false">
     <block name="sclk_s_VM" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -878,13 +921,5 @@
       <field name="BREAK_DETECT" from="11" to="11" access="RW" resetVal="" desc="Logical and of corresponding request and mask bits" hidden="false" />
     </register>
   </block>
-  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SW_Left" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Pin_Left" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Pin_Vss" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="D_3" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="D_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="C_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="R_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="R_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
 </blockRegMap>

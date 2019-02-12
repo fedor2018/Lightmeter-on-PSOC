@@ -12,5 +12,6 @@
 
 void VEML6070_init();
 float VEML6070_uv(void);
+float VEML6070_uvi(void);
 
 /* [] END OF FILE */

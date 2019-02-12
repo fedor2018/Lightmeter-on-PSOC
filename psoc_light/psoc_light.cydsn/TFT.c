@@ -211,8 +211,7 @@ void TFT_FillScreen(uint16_t XL, uint16_t XR, uint16_t YU, uint16_t YD, uint16_t
 
 	TFT_SetCol(XL,XR);
 	TFT_SetPage(YU, YD);
-	TFT_SendCMD(0x2c);                                                  /* start to write to display ra */
-	/* m                            */
+	TFT_SendCMD(0x2c);  /* start to write to display ram */
 
 	uint8_t Hcolor = color>>8;
 	uint8_t Lcolor = color&0xff;

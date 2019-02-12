@@ -9,7 +9,8 @@
 <projects>
 <v>.\psoc_light.cydsn\psoc_light.cyprj</v>
 <v>.\TFT240x320.cydsn\TFT240x320.cyprj</v>
-<v>.\Design01.cydsn\Design01.cyprj</v>
+<v>.\i2c_example.cydsn\i2c_example.cyprj</v>
+<v>.\Oscilloscope.cydsn\Oscilloscope.cyprj</v>
 </projects>
 <workspace_id v="4352dfc3-24a9-4b64-be8a-7ef1766fa9cf" />
 <WriteAppVersionLastSavedWith v="4.2.0.641" />
