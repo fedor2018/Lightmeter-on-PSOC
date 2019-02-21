@@ -9,10 +9,22 @@
  *
  * ========================================
 */
-#include "project.h"
+#include "vcc.h"
 
-void VEML6070_init();
-float VEML6070_uv(void);
-float VEML6070_uvi(void);
+void vcc_init(){
+    DAC_Start();
+    DAC_SetValue(0);
+    Comp_Start();
+}
+
+uint16_t vcc_get(){//Vcc*10
+    for(uint8_t i=0; i<8; i++){
+        DAC_SetValue(i);
+        if(StatReg_Read()&0x1){
+            return ((float)i*VBIT*RDIV)*10;
+        }
+    }
+    return 0;
+}
 
 /* [] END OF FILE */

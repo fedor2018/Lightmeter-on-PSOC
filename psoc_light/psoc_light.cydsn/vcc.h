@@ -11,8 +11,13 @@
 */
 #include "project.h"
 
-void VEML6070_init();
-float VEML6070_uv(void);
-float VEML6070_uvi(void);
+void vcc_init();
+uint16_t vcc_get();
 
+#define IMAX 306   //uA =>Vmax
+#define RES  6800 //sink resistor Vmax/Imax
+//#define VBAT 4200
+//#define VMAX (VBAT*(5100/(5100+5600))) //2V
+#define VBIT ((float)(RES*IMAX)/0x7F) //Vref max/0x7F (V)
+#define RDIV ((float)(5100+5600)/5100) //2.08
 /* [] END OF FILE */

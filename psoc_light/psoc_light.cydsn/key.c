@@ -9,10 +9,13 @@
  *
  * ========================================
 */
-#include "project.h"
+#include "key.h"
 
-void VEML6070_init();
-float VEML6070_uv(void);
-float VEML6070_uvi(void);
+
+void key_init(){
+    POFF_Start();
+    
+}
+
 
 /* [] END OF FILE */

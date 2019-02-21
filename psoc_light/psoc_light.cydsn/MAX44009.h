@@ -9,6 +9,7 @@
  *
  * ========================================
 */
+#include "project.h"
 
 void MAX44009_init();
 float MAX44009_lux(void);

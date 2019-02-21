@@ -10,6 +10,8 @@
  * ========================================
 */
 
+#include "project.h"
+
 const float HD_SCALAR = 2.0;
 
 const float UV_ALPHA = 1.0;
