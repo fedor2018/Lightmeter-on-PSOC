@@ -9,13 +9,12 @@
  *
  * ========================================
 */
-#include "TFT.h"
+#include "display.h"
 #include "MAX44009.h"
 #include "VEML6070.h"
 #include "vcc.h"
 #include "key.h"
-
-extern uint16_t MAX_X, MAX_Y ;          // display screen size (TFT.c)
+#include "ms.h"
 
 int main(void)
 {
@@ -27,14 +26,10 @@ int main(void)
     
     key_init();
     I2C_I2CInit();
+    ms_init();
     MAX44009_init();
     VEML6070_init();
-    SPIM_Start();
-    
-    TFT_Init(3);    // landscape with connector on left
-    MAX_X=240;
-    MAX_Y=320;
-    TFT_FillScreen(0, MAX_X, 0, MAX_Y, BLACK);	
+    display_init();
     
     for(;;)
     {
